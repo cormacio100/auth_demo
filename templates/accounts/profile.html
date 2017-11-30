@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+    {% if message %}
+        {{ message }}
+    {% endif %}
+    {% if last_login %}
+        last login: {{ last_login }}
+    {% endif %}
+    <h2>Success</h2>
+    <p>You are logged in as {{ user.email }}</p>
+{% endblock %}
