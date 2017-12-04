@@ -5,8 +5,10 @@
 
 from models import User     #   custom User
 
+#   An Authentication Backend implements 2 required methods: get_user() and authenticate()
 class EmailAuth(object):
-    #   FUNCTION saves the user and then returns it
+    #   FUNCTION overrides the DEFAULT Authenticate function and checks the user credentials are valid
+    #   and then returns it else return None
     def authenticate(self, email=None, password=None):
         """
         Get an instance of USER using the supplied email
@@ -24,6 +26,7 @@ class EmailAuth(object):
         except User.DoesNotExist:
             return None
 
+    #   Function takes a user_id (or whatever the primary key of user object is) and returns a user object
     def get_user(self, user_id):
         """
         Used by Django authentication system to retrieve an instance of User based on USER_ID

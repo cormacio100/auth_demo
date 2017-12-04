@@ -5,6 +5,11 @@ from django.core.exceptions import ValidationError
 
 
 class UserRegistrationForm(UserCreationForm):
+    YES_NO = (
+        ('Yes', 'Yes'),
+        ('No', 'No'),
+    )
+
     password1 = forms.CharField(
         label='Password',
         widget=forms.PasswordInput
@@ -15,9 +20,9 @@ class UserRegistrationForm(UserCreationForm):
         widget=forms.PasswordInput
     )
 
-    address = forms.CharField(
-        label='Address',
-        widget=forms.TextInput
+    is_entertainer = forms.CharField(
+        label='Entertainer',
+        widget=forms.Select(choices=YES_NO)
     )
 
     #   THE FIELDS WE WANT TO DISPLAY
@@ -25,7 +30,7 @@ class UserRegistrationForm(UserCreationForm):
     #   In this case PASSWORD1 and PASSWORD2 have been customised
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2', 'first_name', 'last_name', 'address']
+        fields = ['email', 'password1', 'password2', 'first_name', 'last_name','is_entertainer']
         exclude = ['username']
 
     #   clean the passwords and ensure they are valid
