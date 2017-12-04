@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.template.context_processors import csrf
 from accounts.forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 
 
 # VIEW TO DISPLAY REGISTER FORM
@@ -23,6 +24,7 @@ def register(request):
 
             #   Log the user in and show their profile
             if user:
+                login(request,user)
                 messages.success(request, "You have successfully registered")
                 return redirect(reverse('profile'))
             else:
@@ -38,7 +40,7 @@ def register(request):
     return render(request, 'accounts/register.html', args)
 
 
-def login(request):
+def auth_login(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         #   if the form is valid lg the user in and return user object

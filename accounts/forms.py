@@ -14,6 +14,7 @@ class UserRegistrationForm(UserCreationForm):
         label='Password Confirmation',
         widget=forms.PasswordInput
     )
+
     address = forms.CharField(
         label='Address',
         widget=forms.TextInput
@@ -24,7 +25,7 @@ class UserRegistrationForm(UserCreationForm):
     #   In this case PASSWORD1 and PASSWORD2 have been customised
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2', 'first_name', 'last_name','address']
+        fields = ['email', 'password1', 'password2', 'first_name', 'last_name', 'address']
         exclude = ['username']
 
     #   clean the passwords and ensure they are valid
