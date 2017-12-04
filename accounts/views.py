@@ -25,7 +25,10 @@ def register(request):
             #   Log the user in and show their profile
             if user:
                 login(request,user)
-                messages.success(request, "You have successfully registered")
+                if request.POST.get('is_entertainer') == 'Yes':
+                    messages.success(request, "You have successfully registered as an Entertainer")
+                else:
+                    messages.success(request, "You have successfully registered")
                 return redirect(reverse('profile'))
             else:
                 messages.error(request, "unable to log you in at this time!")
