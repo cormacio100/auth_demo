@@ -16,7 +16,7 @@
             <ul class="nav nav-pills pull-right">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{% url 'todo' %}">Todo API</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
                 {% if user.is_active %}
                     <li><a href="{% url 'logout' %}">Log Out</a></li>

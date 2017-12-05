@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'hello',
     'accounts',
     'django_forms_bootstrap',
+    'rest_framework',
+    'todo',
 ]
 
 ##################################################################################
