@@ -15,7 +15,7 @@
         <div class="masthead">
             <ul class="nav nav-pills pull-right">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{% url 'todo:todo_api_render' %}">Todo API Render</a></li>
                 <li><a href="{% url 'todo:todo_all' %}">Todo API</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
                 {% if user.is_active %}
@@ -50,4 +50,5 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% block script %}{% endblock %}
 </html>

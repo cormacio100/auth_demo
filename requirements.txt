@@ -1,3 +1,5 @@
 Django==1.11.7
 django-forms-bootstrap==3.1.0
 pytz==2017.3
+pyJWT==1.4.2
+djangorestframework-jwt==1.8.0

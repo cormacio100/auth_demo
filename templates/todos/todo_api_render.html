@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+    <h1>TODO API RENDER VIEW</h1>
+{% endblock %}
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            var jsonUrl = "http://127.0.0.1:8000/todo/todo_api_render"
+
+            console.log('submitting REQUEST TO API')
+            $.getJSON(jsonUrl, function(data){
+                $('#result').text(JSON.stringify(data,null,2));
+            },"json");
+        });
+    </script>
+{% endblock %}
