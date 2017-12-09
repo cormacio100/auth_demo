@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 
 
 class UserRegistrationForm(UserCreationForm):
+
     YES_NO = (
         ('Yes', 'Yes'),
         ('No', 'No'),

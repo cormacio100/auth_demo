@@ -5,8 +5,10 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from todo.serializers import TodoSerializer
 from todo.models import Todo
+from accounts.models import User
 
 #   using a CLASS BASED VIEW
 class TodoView(APIView):
@@ -14,6 +16,9 @@ class TodoView(APIView):
     TodoView used to handle the incoming requests relating to
     'todo' items
     """
+
+    #   set the permission class of the View
+    permission_classes = (IsAuthenticated,)
 
     #   When we make a GET request to the server, it will auto
     #   invoke the get() method
@@ -24,7 +29,7 @@ class TodoView(APIView):
         :param request:
         :return: serialized data
         '''
-
+        #if "username" in request.query_params:
         if pk is None:
             #   Retrieve the items
             todo_items = Todo.objects.all()
@@ -49,6 +54,7 @@ class TodoView(APIView):
             serialized_data = serializer.data
             #   return the data in an instance of the Response object
             return Response(serialized_data)
+        # else return Response(status=status.HTTP_404_NOT_FOUND)
 
 
     def post(self, request):
@@ -102,6 +108,14 @@ class TodoView(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         else:
+            # Get the `user` based on the request data (not in the serializer)
+            # user = User.objects.get(username=request.data["username"])
+            # Get the todo item data from the serializer
+            # data = serializer.data
+            # Create the new `todo` item
+            # Todo.objects.create(user=user, title=data["title"],
+            #                    description=data["description"], status=data["status"])
+            #   return Response(serializer.data,status=status.HTTP_201_CREATED)
             serializer.save()
             return Response(serializer.data)
 
@@ -124,4 +138,4 @@ class TodoView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 def todo_api_render(request):
-    return render(request, 'todos/todo_api_render.html')
+    return render(request, 'todo/todo_api_render.html')

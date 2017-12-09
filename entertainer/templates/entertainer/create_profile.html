@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-4">
+            &nbsp;
+        </div>
+        <div class="col-4">
+            <form role="form" method="post" action="{% url 'entertainer:create_profile' %}" class="account-form">
+                <legend>Entertainer Profile</legend>
+                <hr>
+                {% csrf_token %}
+                {{ form | as_bootstrap }}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-orange btn-block">Create</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-4">
+            &nbsp;
+        </div>
+    </div>
+{% endblock %}

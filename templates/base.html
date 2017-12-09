@@ -17,11 +17,12 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="{% url 'todo:todo_api_render' %}">Todo API Render</a></li>
                 <li><a href="{% url 'todo:todo_all' %}">Todo API</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'accounts:register' %}">Register</a></li>
+                <li><a href="{% url 'accounts:test' %}">Test</a></li>
                 {% if user.is_active %}
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'accounts:login' %}">Log In</a></li>
                 {% endif %}
 
 
