@@ -39,12 +39,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hello',
     'accounts',
+    'multiselectfield',
     'django_forms_bootstrap',
     'rest_framework',
     'todo',
     'entertainer',
     'blog',
+    'paypal.standard.ipn',
+    'storages',
 ]
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000',
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -154,7 +162,29 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR,'static'),
 )
+
+
+
+#   PAYPAL SETTINGS
+SITE_URL = 'http://127.0.0.1:8000'
+PAYPAL_NOTIFY_URL = 'http://127.0.0.1/a-hard-to-guess-url'
+PAYPAL_RECEIVER_EMAIL = 'cormac.music-facilitator@gmail.com'
+
+#############################################################
+#   AWS (S3 BUCKET) SETTINGS
+#############################################################
+AWS_STORAGE_BUCKET_NAME = 'bookanentertainer'
+AWS_S3_REGION_NAME = 'us-east-2'    #   can find this by clicking on a file in S3 bucket and PROPERTIES
+AWS_ACCESS_KEY_ID = 'AKIAI5T5J7ZFGFZQRLXQ'
+AWS_SECRET_ACCESS_KEY = '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'
+
+#   TELL DJANGO-STORAGES THE DOMAIN TO USE TO REFER TO STATIC FILES
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+#   TELL THE STATICFILES APP TO USE S3BOTO3 STORAGE WHEN WRITING THE COLLECTED STATIC FILES
+#   WHEN YOU RUN 'collectstatic'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

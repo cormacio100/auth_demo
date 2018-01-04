@@ -49,3 +49,7 @@ class Entertainer(models.Model):
         choices = GENRE_TYPES,
         default = 'Rock'
     )
+    profileImage = models.ImageField(
+        upload_to = 'entertainers/media/images/profile/',
+        default='media/no_image.png'
+    )

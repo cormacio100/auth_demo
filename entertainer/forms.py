@@ -27,4 +27,5 @@ class EntertainerRegistrationForm(forms.ModelForm):
         model = Entertainer
         fields = ('title',
                   'description',
-                  'genre')
+                  'genre',
+                  'profileImage')

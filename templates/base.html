@@ -20,6 +20,8 @@
                 <li><a href="{% url 'todo:todo_all' %}">Todo API</a></li>
                 <li><a href="{% url 'accounts:register' %}">Register</a></li>
                 <li><a href="{% url 'accounts:test' %}">Test</a></li>
+                <li><a href="{% url 'entertainer:listed_entertainers' %}">Entertainers</a></li>
+                <li><a href="{% url 'test_form' %}">Form</a></li>
                 <li><a href="{% url 'blog:list' %}">Blog</a></li>
                 {% if user.is_active %}
                     <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>

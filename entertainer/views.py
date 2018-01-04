@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from .forms import EntertainerRegistrationForm
 from django.contrib.auth.decorators import login_required
+from .models import Entertainer
 
 # Create your views here.
 @login_required
@@ -21,3 +22,8 @@ def create_profile(request):
         #   must pass the newly created user object to it's constructor
         form = EntertainerRegistrationForm(request.user)
         return render(request, 'entertainer/create_profile.html', {'form': form})
+
+
+def listings(request):
+    entertainers = Entertainer.objects.all()
+    return render(request, 'entertainer/listings.html',{'entertainers':entertainers})
