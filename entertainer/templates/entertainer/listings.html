@@ -21,7 +21,7 @@
             {% for entertainer in entertainers %}
                 <div class="col-3 ent-listing">
                     {{ entertainer.title }}
-                    <img class="card-img-top" src="{% static 'entertainer/media/images/profiles/cb_profile.jpg' %}" class="img-fluid center-block img-thumbnail" style="max-height:150px;" alt="Card image cap">
+                    <img class="card-img-top" src="{{ entertainer.profileImage.url }}" class="img-fluid center-block img-thumbnail" style="max-height:150px;" alt="Image">
                 </div>
             {% endfor %}
         </div>
@@ -29,4 +29,7 @@
             &nbsp;
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static "js/custom.js" %}"></script>
 {% endblock %}

@@ -50,6 +50,6 @@ class Entertainer(models.Model):
         default = 'Rock'
     )
     profileImage = models.ImageField(
-        upload_to = 'entertainers/media/images/profile/',
-        default='media/no_image.png'
+        upload_to = 'images/profile/',
+        default='no_image.png'
     )

@@ -166,7 +166,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
-
+MEDIA_URL = '/pics/'
+MEDIA_ROOT = BASE_DIR
 
 
 #   PAYPAL SETTINGS
@@ -176,15 +177,24 @@ PAYPAL_RECEIVER_EMAIL = 'cormac.music-facilitator@gmail.com'
 
 #############################################################
 #   AWS (S3 BUCKET) SETTINGS
+#   -   ENABLES MEDIA AND STATIC FILES TO BE STORED ON S3
 #############################################################
 AWS_STORAGE_BUCKET_NAME = 'bookanentertainer'
 AWS_S3_REGION_NAME = 'us-east-2'    #   can find this by clicking on a file in S3 bucket and PROPERTIES
-AWS_ACCESS_KEY_ID = 'AKIAI5T5J7ZFGFZQRLXQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 
 #   TELL DJANGO-STORAGES THE DOMAIN TO USE TO REFER TO STATIC FILES
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 #   TELL THE STATICFILES APP TO USE S3BOTO3 STORAGE WHEN WRITING THE COLLECTED STATIC FILES
 #   WHEN YOU RUN 'collectstatic'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#   STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+
+#   WHEN A USER UPLOADS AN AVATAR, IT SHOULD GO INTO /MEDIA/ IN OUR S3 BUCKET
+#   WHEN WE DISPLAY TEH ISMAGE ON A PAGE, THE IMAGE URL WILL INCLUDE '/MEDIA/'
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+

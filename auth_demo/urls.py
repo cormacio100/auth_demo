@@ -17,8 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from accounts import views as accounts_views
 from hello import views as hello_views
-from django.conf import settings
 from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
@@ -29,4 +29,4 @@ urlpatterns = [
     url(r'^entertainer/', include('entertainer.urls')),
     url(r'^blog/', include('blog.urls')),
     #url(r'', include('blog.urls'))
-]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
